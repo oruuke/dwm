@@ -16,6 +16,7 @@ static const char col_gray4[]       = "#eeeeee";
 static const char col_pink1[]   = "#FFAFFF";
 static const char col_pink2[]   = "#FF5CE1";
 static const char col_pink3[]   = "#B55088";
+//static const char col_pink4[]	= "#1D1018";
 /* secondary */
 static const char col_cyan1[]   = "#99CCCC";
 static const char col_cyan2[]   = "#007F7F";
