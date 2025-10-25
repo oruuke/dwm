@@ -68,18 +68,24 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+/* paths */
+static const char path_to_screenshots[] = "~/RESOURCES/pictures/screenshots/ss-%Y-%m-%d-%H_%M_%S.jpg";
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan2, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-static const char *qutebrowser[]  = { "qutebrowser", NULL };
+static const char *dmenucmd[]    = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan2, "-sf", col_gray4, NULL };
+static const char *termcmd[]     = { "st", NULL };
+static const char *qutebrowser[] = { "qutebrowser", NULL };
+// WHY WONT WORKIE??
+static const char *scrot[]       = { "scrot", path_to_screenshots, NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	/* software */
 	{ MODKEY,                       XK_space,  spawn,          {.v = dmenucmd } },
 	{ MODKEY,             		XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      spawn,      	   {.v = qutebrowser} },
+	{ MODKEY,                       XK_b,      spawn,      	   {.v = qutebrowser } },
+	{ MODKEY,                       XK_s,      spawn,      	   {.v = scrot } },
 	/* movement */
 	{ MODKEY,                       XK_h,      shiftview,      {.i = -1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -91,8 +97,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Up,     focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_Right,  shiftview,      {.i = +1 } },
 	/* arrangement */
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_j,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_k,      incnmaster,     {.i = +1 } },
 	/* adjustment */
 	{ MODKEY|ControlMask,           XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY|ControlMask,           XK_l,      setmfact,       {.f = +0.05} },
@@ -100,7 +106,7 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Right,  setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_z,      zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY,		        XK_c,      killclient,     {0} },
+	{ MODKEY,		        XK_d,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
